@@ -5,24 +5,26 @@ nick_name = input("닉네임을 입력하세요: ")
 
 #기본 레벨 정보
 URL_front = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
-URL_end = '?api_key='
+URL_end = '?api_key=RGAPI-3ade29dc-1676-4003-9b2d-441089386cda'
 
 response = requests.get(URL_front + nick_name + URL_end)
 
 response.status_code
 information = response.text
 
-#레벨추출
-level = re.findall("\d+", information)
+
 
 #고유아이디 추출
 info = information.split('"')
 
 original_id = info[3]
 
+#레벨추출
+level = re.findall("\d+", info[-1])
+
 #랭크 정보
 Rank_URL_front = 'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/'
-Rank_URL_end = '?api_key='
+Rank_URL_end = '?api_key=RGAPI-3ade29dc-1676-4003-9b2d-441089386cda'
 
 #랭크 URL조합
 response_r = requests.get(Rank_URL_front + original_id + Rank_URL_end)
@@ -63,3 +65,4 @@ else:
         print("자유랭크 패배: " + solo_r[43])
     except IndexError:
         print("==자유 랭크 정보가 없습니다.==")
+print(info)
