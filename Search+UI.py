@@ -135,7 +135,7 @@ Solo_Rank_PerTitle.grid(row=2, column=6)
 Solo_Rank_Per = Entry(window, width=7)
 Solo_Rank_Per.grid(row=2, column=7)
 
-#sadasd
+#Team_Rank
 F_Rank_Title = Label(window, text="Team Rank")
 F_Rank_Title.grid(row=3, column=0)
 
