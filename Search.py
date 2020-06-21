@@ -1,11 +1,17 @@
 import requests
 import re
+from tkinter import*
+import pandas
+
+window = Tk()
+a = Entry(window)
+a.pack()
 
 nick_name = input("닉네임을 입력하세요: ")
 
 #기본 레벨 정보
 URL_front = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
-URL_end = '?api_key=RGAPI-3ade29dc-1676-4003-9b2d-441089386cda'
+URL_end = '?api_key=RGAPI-fe6feda5-a105-467c-b4dd-236c37445265'
 
 response = requests.get(URL_front + nick_name + URL_end)
 
@@ -24,7 +30,7 @@ level = re.findall("\d+", info[-1])
 
 #랭크 정보
 Rank_URL_front = 'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/'
-Rank_URL_end = '?api_key=RGAPI-3ade29dc-1676-4003-9b2d-441089386cda'
+Rank_URL_end = '?api_key=RGAPI-fe6feda5-a105-467c-b4dd-236c37445265'
 
 #랭크 URL조합
 response_r = requests.get(Rank_URL_front + original_id + Rank_URL_end)
@@ -66,3 +72,5 @@ else:
     except IndexError:
         print("==자유 랭크 정보가 없습니다.==")
 print(info)
+
+window.mainloop()
